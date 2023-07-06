@@ -1,0 +1,7 @@
+<div>
+    <p>Show</p>
+    <select [formControl]="entryControl" (ngModelChange)="event()">
+        <option *ngFor="let entry of possibleEntries" [ngValue]="entry">{{ entry }}</option>
+    </select>
+    <p>entries</p>
+</div>
