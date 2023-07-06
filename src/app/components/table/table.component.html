@@ -1,0 +1,45 @@
+<app-flat-button 
+    label="Add New User" 
+    (onClick)="onAddUser()"
+></app-flat-button>
+<div fxLayout fxLayoutAlign="space-between center">
+    <app-entries-selector
+        [entryControl]="entryFormControl"
+        [possibleEntries]="possibleEntries"
+        (onChangeValue)="onChangeEntry()"
+    ></app-entries-selector>
+    <div fxLayout fxLayoutAlign="center center" fxLayoutGap="8px">
+        <p>Search</p>
+        <app-text-input
+            placeholder="Search for Username..."
+            [control]="searchFormControl"
+            (onChangeValue)="onChangeSearch()"
+        ></app-text-input>
+    </div>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+           <td>ID</td> 
+           <td>Email</td> 
+           <td>Username</td> 
+           <td>Actions</td> 
+        </tr>
+    </tbody>
+</table>
+<div fxLayout fxLayoutAlign="space-between center">
+    <app-entries
+        [items]="items"
+        [entries]="entries"
+        [currentPage]="currentPage"
+    ></app-entries>
+    <app-paginator></app-paginator>
+</div>
