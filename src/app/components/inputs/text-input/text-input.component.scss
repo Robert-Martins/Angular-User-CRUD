@@ -1,0 +1,20 @@
+div {
+    display: flex;
+    gap: 12px;
+    label {
+        font-size: 12px;
+    }
+    
+    input {
+        font-size: 12px;
+        padding: 8px 16px;
+        border: 1px solid black;
+        border-radius: 4px;
+        transition: 0.2;
+        &:hover, &:focus {
+            border: 1px solid #348feb;
+            outline: 0;
+            transition: 0.2s;
+        }
+    }
+}

@@ -1,0 +1,10 @@
+<div>
+    <label>{{ label }}</label>
+    <input 
+        [type]="type" 
+        [formControl]="control" 
+        [placeholder]="placeholder"
+        [disabled]="disabled" 
+        (keyup)="event()"
+    />
+</div>
