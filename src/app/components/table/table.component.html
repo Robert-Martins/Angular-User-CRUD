@@ -2,7 +2,7 @@
     label="Add New User" 
     (onClick)="onAddUser()"
 ></app-flat-button>
-<div fxLayout fxLayoutAlign="space-between center">
+<div fxLayout fxLayoutAlign="space-between center" style="margin-top: 32px;">
     <app-entries-selector
         [entryControl]="entryFormControl"
         [possibleEntries]="possibleEntries"
@@ -26,15 +26,31 @@
             <th>Actions</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-           <td>ID</td> 
-           <td>Email</td> 
-           <td>Username</td> 
-           <td>Actions</td> 
+    <tbody *ngIf="!isListEmpty">
+        <tr *ngFor="let user of users">
+           <td>{{ user.id }}</td> 
+           <td>{{ user.email }}</td> 
+           <td>{{ user.username }}</td> 
+           <td>
+                <app-icon-button
+                    icon="eye"
+                    (onClick)="onViewUser(user)"
+                ></app-icon-button>
+                <app-icon-button
+                    icon="edit"
+                    (onClick)="onEditUser(user)"
+                ></app-icon-button>
+                <app-icon-button
+                    icon="trash"
+                    (onClick)="onDeleteUser(user.id)"
+                ></app-icon-button>
+           </td> 
         </tr>
     </tbody>
 </table>
+<h4 *ngIf="isListEmpty">
+    Empty list
+</h4>
 <div fxLayout fxLayoutAlign="space-between center">
     <app-entries
         [items]="items"

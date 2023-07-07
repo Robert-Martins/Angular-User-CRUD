@@ -42,20 +42,24 @@ export class TableComponent implements OnInit {
     return this.pageFormControl.value;
   }
 
+  public get isListEmpty(): boolean {
+    return this.users?.length === 0;
+  }
+
   public onAddUser(): void {
-    console.log("add");
+    this.userService.openForm(new User());
   }
 
   public onViewUser(user: User): void {
-    
+    this.userService.openForm(user, true);
   }
 
   public onEditUser(user: User): void {
-
+    this.userService.openForm(user);
   }
 
   public onDeleteUser(userId: number): void {
-
+    this.userService.delete(userId);
   }
 
   public onChangeEntry(): void {
