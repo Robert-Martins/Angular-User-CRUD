@@ -6,14 +6,14 @@
     <app-entries-selector
         [entryControl]="entryFormControl"
         [possibleEntries]="possibleEntries"
-        (onChangeValue)="onChangeEntry()"
+        (onChangeValue)="onChangePaginator()"
     ></app-entries-selector>
     <div fxLayout fxLayoutAlign="center center" fxLayoutGap="8px">
         <p>Search</p>
         <app-text-input
             placeholder="Search for Username..."
             [control]="searchFormControl"
-            (onChangeValue)="onChangeSearch()"
+            (onChangeValue)="onChangePaginator()"
         ></app-text-input>
     </div>
 </div>

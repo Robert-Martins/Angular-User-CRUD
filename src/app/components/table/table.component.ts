@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { Paginator } from 'src/app/models/paginator.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,19 +11,19 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class TableComponent implements OnInit {
 
-  users?: User[];
+  public users: User[] = [];
 
-  items: number = 0;
+  public filtered: User[] = [];
 
-  totalPages: number = 0;
+  readonly possibleEntries: number[] = [ 5, 10, 20 ];
 
-  possibleEntries: number[] = [ 5, 10, 20 ];
+  public pageFormControl!: FormControl;
 
-  pageFormControl!: FormControl;
+  public entryFormControl!: FormControl;
 
-  entryFormControl!: FormControl;
+  public searchFormControl!: FormControl;
 
-  searchFormControl!: FormControl;
+  public paginator: Paginator = new Paginator(1);
 
   constructor(
     private userService: UserService,
@@ -62,18 +63,21 @@ export class TableComponent implements OnInit {
     this.userService.delete(userId);
   }
 
-  public onChangeEntry(): void {
-    console.log("entry");
-  }
-
-  public onChangeSearch(): void {
-    console.log("search");
+  public onChangePaginator(): void {
+    this.filterData();
   }
 
   private loadData(): void {
-    this.users = this.userService.findAll();
-    this.items = this.users.length;
-    this.totalPages = Math.floor(this.items / this.possibleEntries[0]);
+    this.filtered = this.userService.findAll();
+    this.paginator = new Paginator(
+      this.filtered.length,
+      this.entryFormControl.value,
+      this.pageFormControl.value
+    );
+    this.filterData();
+  }
+
+  private filterData(): void {
   }
 
   private createFormControls(): void {
