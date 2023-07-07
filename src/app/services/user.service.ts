@@ -22,6 +22,7 @@ export class UserService {
     user.id = Math.max(...users.map(u => u.id), 0) + 1;
     users.push(user);
     this.saveUsers(users);
+    location.reload();
   }
 
   public read(userId: number): User | null {
@@ -36,6 +37,7 @@ export class UserService {
       return;
     users[index] = user;
     this.saveUsers(users);
+    location.reload();
   }
 
   public delete(userId: number): void {

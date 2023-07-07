@@ -7,7 +7,7 @@
     left: 0;
     .modal-body {
         width: 400px;
-        height: 320px;
+        height: 400px;
         padding: 20px;
         position: fixed;
         top: 50%;
@@ -15,5 +15,26 @@
         transform: translate(-50%, -50%);
         background-color: white;
         border-radius: 4px;
+        form {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            align-items: center;
+            gap: 12px;
+            margin: 24px 0;
+            label {
+                grid-column: span 1;
+                font-size: 12px;
+            }
+            app-text-input {
+                grid-column: span 2;
+            }
+            span {
+                margin-top: 20px;
+                grid-column: span 3;
+                text-align: center;
+                color: #ff4f4f;
+                font-size: 12px;
+            }
+        }
     }
 }

@@ -26,7 +26,6 @@ export class UserFormComponent implements OnChanges {
   }
 
   public createUserForm(): void {
-    console.log(this.userFormData);
     this.userFormGroup = this.userService.createUserForm(this.user);
   }
 
@@ -50,6 +49,10 @@ export class UserFormComponent implements OnChanges {
     return this.userFormData.disabled;
   }
 
+  public get formValid(): boolean {
+    return this.userFormGroup.valid;
+  }
+
   public get formValues(): User {
     return this.userFormGroup.value as User;
   }
@@ -64,6 +67,7 @@ export class UserFormComponent implements OnChanges {
         this.userService.create(this.formValues) 
       : 
         this.userService.update(this.formValues.id, this.formValues);
+    this.userService.closeForm();
   }
 
   public onClickClose(): void {

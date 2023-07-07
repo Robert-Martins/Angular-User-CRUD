@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-text-input',
@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 export class TextInputComponent {
 
   @Input()
-  label?: string;
+  label!: string;
 
   @Input()
   type: 'text' | 'password' | 'number' = 'text';
@@ -27,6 +27,14 @@ export class TextInputComponent {
   onChangeValue: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
+
+  public get isValid(): boolean {
+    return this.control.valid;
+  }
+
+  public get isRequired(): boolean {
+    return this.control.validator === Validators.required;
+  }
 
   public event(): void {
     this.onChangeValue?.emit();
