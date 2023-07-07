@@ -6,10 +6,10 @@ export class User {
     password: string;
 
     constructor(
-        id: number,
-        username: string,
-        email: string,
-        password: string
+        id: number = 0,
+        username: string = '',
+        email: string = '',
+        password: string = ''
     ) {
         this.id = id;
         this.username = username;

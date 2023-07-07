@@ -6,6 +6,7 @@ import { InputsModule } from './inputs/inputs.module';
 import { FormsModule } from '@angular/forms';
 import { PaginatorModule } from './paginator/paginator.module';
 import { FlexModule } from '@angular/flex-layout';
+import { AppFormsModule } from './forms/app-forms.module';
 
 
 
@@ -19,14 +20,16 @@ import { FlexModule } from '@angular/flex-layout';
     ButtonsModule,
     InputsModule,
     PaginatorModule,
-    FlexModule
+    FlexModule,
+    AppFormsModule
   ],
   exports: [
     TableComponent,
     ButtonsModule,
     InputsModule,
     PaginatorModule,
-    FlexModule
+    FlexModule,
+    AppFormsModule
   ]
 })
 export class ComponentsModule { }

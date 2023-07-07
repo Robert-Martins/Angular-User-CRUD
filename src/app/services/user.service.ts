@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
+import { BehaviorSubject } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserForm } from '../models/user-form.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +11,10 @@ export class UserService {
 
   private localStorageKey: string = 'users';
 
+  private userForm = new BehaviorSubject<UserForm>(new UserForm());
+
   constructor(
-    
+    private fb: FormBuilder
   ) { }
 
   public create(user: User): void {
@@ -45,6 +50,31 @@ export class UserService {
   public findAll(): User[] {
     const storaged = localStorage.getItem(this.localStorageKey);
     return storaged ? JSON.parse(storaged) : [];
+  }
+
+  public openForm(user: User, disabled: boolean = false): void {
+    this.userForm.next(new UserForm(true, disabled, user));
+  }
+
+  public closeForm(): void {
+    this.userForm.next(new UserForm(false));
+  }
+
+  public getFormData(): UserForm {
+    return this.userForm.value;
+  }
+
+  public get formActive(): boolean {
+    return this.userForm.value.active;
+  }
+
+  public createUserForm(user: User): FormGroup {
+    return this.fb.group({
+      id: [user.id],
+      email: [user.email, [Validators.required, Validators.email]],
+      username: [user.username, [Validators.required]],
+      password: [user.password, [Validators.required]]
+    })
   }
 
   private saveUsers(users: User[]): void {
