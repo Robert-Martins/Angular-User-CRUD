@@ -47,6 +47,16 @@ export class TableComponent implements OnInit {
     return this.users?.length === 0;
   }
 
+  public set pageOrder(order: 'id' | 'email' | 'username') {
+    this.paginator.orderBy = order;
+    this.filterData();
+  }
+
+  public set pageSort(sort: 'ASC' | 'DESC') {
+    this.paginator.sortBy = sort;
+    this.filterData();
+  }
+
   public onAddUser(): void {
     this.userService.openForm(new User());
   }
@@ -78,6 +88,7 @@ export class TableComponent implements OnInit {
   }
 
   private filterData(): void {
+    
   }
 
   private createFormControls(): void {

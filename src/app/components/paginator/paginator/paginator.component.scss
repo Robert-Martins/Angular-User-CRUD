@@ -1,0 +1,15 @@
+div {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+    button {
+        background-color: inherit;
+        border: 0;
+        transition: 0.2;
+        &:hover {
+            outline: 0;
+            background-color: #FAFAFA;
+            transition: 0.2;
+        }
+    }
+}
