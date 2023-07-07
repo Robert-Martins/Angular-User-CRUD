@@ -20,16 +20,16 @@
 <table>
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Username</th>
-            <th>Actions</th>
+            <th (click)='setPageOrderAndSort("id")'>ID</th>
+            <th class="hide-when-mobile" (click)='setPageOrderAndSort("email")'>Email</th>
+            <th (click)='setPageOrderAndSort("username")'>Username</th>
+            <th class="actions">Actions</th>
         </tr>
     </thead>
     <tbody *ngIf="!isListEmpty">
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let user of filtered">
            <td>{{ user.id }}</td> 
-           <td>{{ user.email }}</td> 
+           <td class="hide-when-mobile">{{ user.email }}</td> 
            <td>{{ user.username }}</td> 
            <td>
                 <app-icon-button
@@ -51,11 +51,15 @@
 <h4 *ngIf="isListEmpty">
     Empty list
 </h4>
-<div fxLayout fxLayoutAlign="space-between center">
+<div fxLayout fxLayoutAlign="space-between center" style="margin-bottom: 48px;">
     <app-entries
         [items]="items"
         [entries]="entries"
         [currentPage]="currentPage"
     ></app-entries>
-    <app-paginator></app-paginator>
+    <app-paginator
+        [totalPages]="totalPages"
+        [pageFormControl]="pageFormControl"
+        (onChangePage)="onChangePaginator()"
+    ></app-paginator>
 </div>

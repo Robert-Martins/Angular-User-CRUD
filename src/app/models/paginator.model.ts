@@ -10,14 +10,16 @@ export class Paginator {
     constructor(
         items: number = 0,
         entries: number = 0,
-        currentPages: number = 0
+        currentPages: number = 0,
+        sortBy: 'ASC' | 'DESC' = 'ASC',
+        orderBy: 'id' | 'email' | 'username' = 'id'
     ) {
         this.items = items;
         this.entries = entries;
         this.currentPage = currentPages;
-        this.totalPages = Math.floor(this.items / this.entries);
-        this.orderBy = 'id';
-        this.sortBy = 'DESC';
+        this.totalPages = Math.floor(this.items / this.entries) + 1;
+        this.orderBy = orderBy;
+        this.sortBy = sortBy;
     }
 
 }

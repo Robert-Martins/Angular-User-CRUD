@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -14,6 +14,9 @@ export class PaginatorComponent {
   @Input()
   public pageFormControl!: FormControl;
 
+  @Output()
+  public onChangePage: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   public get isLastPage(): boolean {
@@ -28,18 +31,23 @@ export class PaginatorComponent {
     return this.pageFormControl.value;
   }
 
-  public set page(page: number) {
+  public lastPage(): void {
+    this.onChange(this.totalPages);
+  }
+
+  public previousPage(): void {
+    const currentPage = this.pageFormControl.value;
+    this.onChange(currentPage - 1);
+  }
+
+  public nextPage(): void {
+    const currentPage = this.pageFormControl.value;
+    this.onChange(currentPage + 1);
+  }
+
+  public onChange(page: number): void {
     this.pageFormControl.setValue(page);
-  }
-
-  public pageUp(): void {
-    const currentPage = this.pageFormControl.value;
-    this.pageFormControl.setValue(currentPage + 1);
-  }
-
-  public pageDown(): void {
-    const currentPage = this.pageFormControl.value;
-    this.pageFormControl.setValue(currentPage - 1);
+    this.onChangePage.emit();
   }
 
 }
