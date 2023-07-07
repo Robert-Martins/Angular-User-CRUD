@@ -1,0 +1,15 @@
+button {
+    width: 24px;
+    height: 24px;
+    margin: 2px 4px;
+    cursor: pointer;
+    background-color: inherit;
+    border: 0;
+    img {
+        width: 24px;
+        height: 24px;
+    }
+    &:hover {
+        outline: 0;
+    }
+}

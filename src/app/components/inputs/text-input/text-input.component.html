@@ -1,0 +1,12 @@
+<div>
+    <label>{{ label }}</label>
+    <input 
+        [type]="type" 
+        [formControl]="control" 
+        [placeholder]="placeholder"
+        [readonly]="disabled" 
+        (keyup)="event()"
+    />
+</div>
+<span *ngIf="!isValid">Invalid Value</span>
+<span *ngIf="isRequired">Required Field</span>

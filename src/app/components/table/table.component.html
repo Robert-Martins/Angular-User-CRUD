@@ -1,0 +1,65 @@
+<app-flat-button 
+    label="Add New User" 
+    (onClick)="onAddUser()"
+></app-flat-button>
+<div fxLayout fxLayoutAlign="space-between center" style="margin-top: 32px;">
+    <app-entries-selector
+        [entryControl]="entryFormControl"
+        [possibleEntries]="possibleEntries"
+        (onChangeValue)="onChangePaginator()"
+    ></app-entries-selector>
+    <div fxLayout fxLayoutAlign="center center" fxLayoutGap="8px">
+        <p>Search</p>
+        <app-text-input
+            placeholder="Search for Username..."
+            [control]="searchFormControl"
+            (onChangeValue)="onChangePaginator()"
+        ></app-text-input>
+    </div>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th (click)='setPageOrderAndSort("id")'>ID</th>
+            <th class="hide-when-mobile" (click)='setPageOrderAndSort("email")'>Email</th>
+            <th (click)='setPageOrderAndSort("username")'>Username</th>
+            <th class="actions">Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="!isListEmpty">
+        <tr *ngFor="let user of filtered">
+           <td>{{ user.id }}</td> 
+           <td class="hide-when-mobile">{{ user.email }}</td> 
+           <td>{{ user.username }}</td> 
+           <td>
+                <app-icon-button
+                    icon="eye"
+                    (onClick)="onViewUser(user)"
+                ></app-icon-button>
+                <app-icon-button
+                    icon="edit"
+                    (onClick)="onEditUser(user)"
+                ></app-icon-button>
+                <app-icon-button
+                    icon="trash"
+                    (onClick)="onDeleteUser(user.id)"
+                ></app-icon-button>
+           </td> 
+        </tr>
+    </tbody>
+</table>
+<h4 *ngIf="isListEmpty">
+    Empty list
+</h4>
+<div fxLayout fxLayoutAlign="space-between center" style="margin-bottom: 48px;">
+    <app-entries
+        [items]="items"
+        [entries]="entries"
+        [currentPage]="currentPage"
+    ></app-entries>
+    <app-paginator
+        [totalPages]="totalPages"
+        [pageFormControl]="pageFormControl"
+        (onChangePage)="onChangePaginator()"
+    ></app-paginator>
+</div>

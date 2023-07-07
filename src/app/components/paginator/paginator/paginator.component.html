@@ -1,0 +1,7 @@
+<div>
+    <button *ngIf="!isFirstPage" type="button" (click)="onChange(1)">First</button>
+    <button *ngIf="!isFirstPage" type="button" (click)="previousPage()">Previous</button>
+    <p>{{ currentPage }}</p>
+    <button *ngIf="!isLastPage" type="button" (click)="nextPage()">Next</button>
+    <button *ngIf="!isLastPage" type="button" (click)="lastPage()">Last</button>
+</div>

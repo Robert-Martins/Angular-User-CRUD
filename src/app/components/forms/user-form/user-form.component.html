@@ -1,0 +1,47 @@
+<div *ngIf="active" class="modal-wrapper">
+    <div class="modal-body" fxLayout="column" fxLayoutAlign="space-between center">
+        <h2>{{ title }}</h2>
+        <form 
+            [formGroup]="userFormGroup"
+        >
+            <label>Email *</label>
+            <app-text-input
+                type="text"
+                [disabled]="disabled"
+                placeholder="Email"
+                [control]="getFormControl('email')"
+            ></app-text-input>
+            <label>Username *</label>
+            <app-text-input
+                type="text"
+                [disabled]="disabled"
+                placeholder="Username"
+                [control]="getFormControl('username')"
+            ></app-text-input>
+            <label>Password *</label>
+            <app-text-input
+                type="password"
+                [disabled]="disabled"
+                placeholder="Password"
+                [control]="getFormControl('password')"
+            ></app-text-input>
+            <span *ngIf="!formValid">All Fields are Required</span>
+        </form>
+        <div
+            [formGroup]="userFormGroup" 
+            fxLayout="row" 
+            fxLayoutAlign="center center" 
+            fxLayoutGap="48px"
+        >
+            <app-flat-button
+                label="Close"
+                (onClick)="onClickClose()"
+            ></app-flat-button>
+            <app-flat-button
+                *ngIf="!disabled"
+                label="Save"
+                (onClick)="onClickSave()"
+            ></app-flat-button>
+        </div>
+    </div>
+</div>
