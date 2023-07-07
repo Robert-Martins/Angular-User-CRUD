@@ -14,7 +14,8 @@ import { IconButtonComponent } from './icon-button/icon-button.component';
     CommonModule
   ],
   exports: [
-    FlatButtonComponent
+    FlatButtonComponent,
+    IconButtonComponent
   ]
 })
 export class ButtonsModule { }
