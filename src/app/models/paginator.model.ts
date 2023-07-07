@@ -17,7 +17,8 @@ export class Paginator {
         this.items = items;
         this.entries = entries;
         this.currentPage = currentPages;
-        this.totalPages = Math.floor(this.items / this.entries) + 1;
+        this.totalPages = Math.floor(this.items / this.entries);
+        this.totalPages += (this.totalPages * this.entries) % this.items !== 0 ? 1 : 0;
         this.orderBy = orderBy;
         this.sortBy = sortBy;
     }
